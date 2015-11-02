@@ -30,7 +30,6 @@ public class PlacesFragment extends Fragment {
 
         ListView lv = (ListView) view.findViewById(R.id.list_view);
         lv.setAdapter(adapter);
-
         return view;
     }
 }

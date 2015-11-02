@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity
         DBHelper db = new DBHelper(getApplicationContext());
 
         Place p1 = new Place(260174309,"Toppen Av Eiffeltornet");
+        p1.setId(db.createPlace(p1));
         Place p2 = new Place(835701820,"Spitze Eifelturm");
-
-        Log.d(DEBUG_TAG, ""+db.createPlace(p1));
+        p1.setId(db.createPlace(p1));
 
         db.closeDB();
     }

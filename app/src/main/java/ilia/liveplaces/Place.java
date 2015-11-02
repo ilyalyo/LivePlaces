@@ -1,7 +1,7 @@
 package ilia.liveplaces;
 
 public class Place {
-    int id;
+    long id;
     int inst_id;
     String name;
 
@@ -12,7 +12,7 @@ public class Place {
         this.name = name;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
     public void setInstId(int inst_id){
@@ -22,7 +22,7 @@ public class Place {
         this.name = name;
     }
 
-    public int getId(){
+    public long getId(){
         return this.id;
     }
 
