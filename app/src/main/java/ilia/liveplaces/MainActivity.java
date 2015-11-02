@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         Place p1 = new Place(260174309,"Toppen Av Eiffeltornet");
         p1.setId(db.createPlace(p1));
         Place p2 = new Place(835701820,"Spitze Eifelturm");
-        p1.setId(db.createPlace(p1));
+        p2.setId(db.createPlace(p2));
 
         db.closeDB();
     }
