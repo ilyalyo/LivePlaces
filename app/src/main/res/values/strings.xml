@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LivePlaces</string>
+
+    <string name="title_section1">Лента</string>
+    <string name="title_section2">Места</string>
+    <string name="title_section3">Настройки</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example"></string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="search_hint">Название места</string>
+</resources>
