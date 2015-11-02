@@ -11,8 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+ место"
-        android:id="@+id/button"
-        android:layout_gravity="right" />
+        android:id="@+id/add_place_btn"
+        android:layout_gravity="right"
+        android:onClick="addPlace"/>
 
     <ListView
         android:id="@+id/list_view"

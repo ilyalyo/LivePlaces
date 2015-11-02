@@ -1,6 +1,7 @@
 package ilia.liveplaces;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -47,14 +48,14 @@ public class MainActivity extends AppCompatActivity
 
 
         //TMP
-        DBHelper db = new DBHelper(getApplicationContext());
+   /*     DBHelper db = new DBHelper(getApplicationContext());
 
         Place p1 = new Place(260174309,"Toppen Av Eiffeltornet");
         p1.setId(db.createPlace(p1));
         Place p2 = new Place(835701820,"Spitze Eifelturm");
         p2.setId(db.createPlace(p2));
 
-        db.closeDB();
+        db.closeDB();*/
     }
 
 
@@ -158,4 +159,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    public void addPlace(View view)
+    {
+        Intent intent = new Intent(this,AddPlaceActivity.class);
+        startActivityForResult(intent,0);
+    }
 }

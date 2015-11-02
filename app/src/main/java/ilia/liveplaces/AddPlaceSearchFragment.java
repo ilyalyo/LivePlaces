@@ -24,40 +24,35 @@ import ilia.liveplaces.db.DBHelper;
 public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQueryTextListener {
     private static final String DEBUG_TAG = "PLACE_STEP2";
 
-    String tmp_url ="https://api.instagram.com/v1/locations/search?lat=48.858844&lng=2.294351&client_id=2e51a52b26134652bc595449800d8387";
     ListView lv;
     SearchView search_view;
 
-    ArrayAdapter<String> adapter;
-    private ArrayList<String> places;
-    private ArrayList<Place> tmp_places;
+    PlacesAddAdapter adapter;
+    private ArrayList<Place> places;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.removeAllViews();
         View view = inflater.inflate(R.layout.fragment_add_place_search,
                 container, false);
 
+        double r = getArguments().getDouble(AddPlaceActivity.PASS_PARAM_RADIUS);
+        double lat = getArguments().getDouble(AddPlaceActivity.PASS_PARAM_LAT);
+        double lng = getArguments().getDouble(AddPlaceActivity.PASS_PARAM_LNG);
+
+        String tmp_url ="https://api.instagram.com/v1/locations/search?lat=" + lat +
+                "&lng=" + lng + "&distance=" + r + "&client_id=2e51a52b26134652bc595449800d8387";
+
         places = new ArrayList<>();
-        tmp_places = new ArrayList<>();
 
         lv = (ListView) view.findViewById(R.id.list_view);
         search_view = (SearchView) view.findViewById(R.id.searchView);
 
-        adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
-                R.layout.list_items, R.id.name, places);
+        adapter = new PlacesAddAdapter(getActivity().getApplicationContext(),
+                R.layout.place_add_item, places);
 
         lv.setAdapter(adapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Place pl = tmp_places.get(position);
-                DBHelper mydb = new DBHelper(getContext());
-
-                mydb.createPlace(pl);
-            }
-        });
 
         search_view.setOnQueryTextListener(this);
 
@@ -69,7 +64,6 @@ public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQue
             JSONObject jsonObj = (JSONObject) new JSONTokener(response).nextValue();
 
             JSONArray jsonMainArr = jsonObj.getJSONArray("data");
-            Log.d(DEBUG_TAG, "REEEES");
 
             for (int i = 0; i < jsonMainArr.length(); i++) {
                 JSONObject childJSONObject = jsonMainArr.getJSONObject(i);
@@ -77,8 +71,7 @@ public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQue
                 int id = childJSONObject.getInt("id");
                 Log.d(DEBUG_TAG, name);
 
-                places.add(name);
-                tmp_places.add(new Place(id, name));
+                places.add(new Place(id, name));
             }
 
         } catch (InterruptedException | ExecutionException | JSONException e) {

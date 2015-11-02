@@ -37,11 +37,11 @@ public class TapeFragment extends Fragment {
         DBHelper db = new DBHelper(getContext());
 
         List<Place> allPlaces = db.getAllPlaces();
-        Log.d(DEBUG_TAG, "saved place_id" + allPlaces.get(0).toString());
+        Log.d(DEBUG_TAG, "saved place_id" + allPlaces.get(0).getName());
 
 
         urls = new ArrayList<>();
-        if(allPlaces.get(0) == null)
+        if(allPlaces.size() == 0)
             return view;
 
         String [] allPlacesUrls = new String[allPlaces.size()];
@@ -51,11 +51,15 @@ public class TapeFragment extends Fragment {
         }
 
         GetHTTP ge = new GetHTTP();
-        ge.execute(allPlacesUrls);
+        //TODO ищет тока первый
+        ge.execute(allPlacesUrls[0]);
         try {
             String response =ge.get();
             JSONObject jsonObj = (JSONObject) new JSONTokener(response).nextValue();
             JSONArray jsonMainArr = jsonObj.getJSONArray("data");
+
+            if(jsonMainArr.length() == 0)
+                Log.d(DEBUG_TAG, "empty");
 
             for (int i = 0; i < jsonMainArr.length(); i++) {
                 JSONObject childJSONObject = jsonMainArr.getJSONObject(i);

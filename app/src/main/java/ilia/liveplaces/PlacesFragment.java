@@ -1,15 +1,15 @@
     package ilia.liveplaces;
 
     import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+    import android.support.v4.app.Fragment;
+    import android.view.LayoutInflater;
+    import android.view.View;
+    import android.view.ViewGroup;
+    import android.widget.ListView;
 
-import java.util.List;
+    import java.util.List;
 
-import ilia.liveplaces.db.DBHelper;
+    import ilia.liveplaces.db.DBHelper;
 
 public class PlacesFragment extends Fragment {
     private static final String DEBUG_TAG = "PLACE_STEP0";
@@ -26,10 +26,11 @@ public class PlacesFragment extends Fragment {
         List<Place> places = db.getAllPlaces();
 
         PlacesAdapter adapter = new PlacesAdapter(getActivity().getApplicationContext(),
-                R.layout.list_items, places);
+                R.layout.place_item, places);
 
         ListView lv = (ListView) view.findViewById(R.id.list_view);
         lv.setAdapter(adapter);
+
         return view;
     }
 }
