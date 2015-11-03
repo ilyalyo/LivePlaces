@@ -47,6 +47,7 @@ public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQue
         places = new ArrayList<>();
 
         lv = (ListView) view.findViewById(R.id.list_view);
+
         search_view = (SearchView) view.findViewById(R.id.searchView);
 
         adapter = new PlacesAddAdapter(getActivity().getApplicationContext(),
@@ -91,6 +92,9 @@ public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQue
         adapter.getFilter().filter(newText);
 
         return false;
+    }
+    public void addPlaceHandler(View v) {
+        Log.d(DEBUG_TAG,"HERE");
     }
 }
 

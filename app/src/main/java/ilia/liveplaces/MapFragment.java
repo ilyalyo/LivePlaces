@@ -1,5 +1,7 @@
 package ilia.liveplaces;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,10 +51,9 @@ public class MapFragment extends Fragment {
 
         googleMap = mMapView.getMap();
 
-
-        // latitude and longitude
-        double latitude = 17.385044;
-        double longitude = 78.486671;
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        double latitude = Double.longBitsToDouble(sharedPref.getLong("centerLng", 74));
+        double longitude = Double.longBitsToDouble(sharedPref.getLong("centerLat", 40));
 
         // Instantiates a new CircleOptions object and defines the center and radius
         CircleOptions circleOptions = new CircleOptions()
@@ -61,7 +62,7 @@ public class MapFragment extends Fragment {
         circle = googleMap.addCircle(circleOptions);
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(latitude, longitude)).zoom(12).build();
+                .target(new LatLng(latitude, longitude)).zoom(10).build();
 
         googleMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
@@ -71,6 +72,11 @@ public class MapFragment extends Fragment {
             @Override
             public void onMapClick(LatLng latLng) {
                 circle.setCenter(latLng);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putLong("centerLng",Double.doubleToRawLongBits(latLng.longitude));
+                editor.putLong("centerLat",Double.doubleToRawLongBits(latLng.latitude));
+                editor.apply();
             }
         });
 

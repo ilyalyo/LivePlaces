@@ -19,6 +19,6 @@
         android:layout_width="69dp"
         android:layout_height="wrap_content"
         android:text="-"
-        android:id="@+id/delete_button" />
+        android:id="@+id/delete_place_button" />
 
 </LinearLayout>
