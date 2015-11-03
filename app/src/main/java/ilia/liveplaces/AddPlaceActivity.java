@@ -1,13 +1,14 @@
 package ilia.liveplaces;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class AddPlaceActivity extends AppCompatActivity {
+public class AddPlaceActivity extends android.support.v4.app.FragmentActivity{
 
     public static final String PASS_PARAM_RADIUS = "radius";
     public static final String PASS_PARAM_LAT = "lat";

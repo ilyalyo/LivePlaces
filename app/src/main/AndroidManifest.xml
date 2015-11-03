@@ -38,7 +38,8 @@
 
         <activity
             android:name=".AddPlaceActivity"
-            android:label="@string/title_activity_add_place" >
+            android:label="@string/title_activity_add_place"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         </activity>
     </application>
 
