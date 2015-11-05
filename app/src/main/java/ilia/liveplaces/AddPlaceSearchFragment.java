@@ -89,12 +89,11 @@ public class AddPlaceSearchFragment extends Fragment implements SearchView.OnQue
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        Log.d(DEBUG_TAG, "str : " + newText);
         adapter.getFilter().filter(newText);
 
         return false;
     }
-    public void addPlaceHandler(View v) {
-        Log.d(DEBUG_TAG,"HERE");
-    }
+
 }
 
