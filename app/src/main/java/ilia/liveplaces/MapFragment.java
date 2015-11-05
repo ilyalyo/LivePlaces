@@ -31,7 +31,8 @@ public class MapFragment extends Fragment {
     MapView mMapView;
     Circle circle;
     GoogleMap googleMap;
-
+    private static final String SHAREDPREFLAT = "lat";
+    private static final String SHAREDPREFLNG= "lng";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,8 +53,8 @@ public class MapFragment extends Fragment {
         googleMap = mMapView.getMap();
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        double latitude = Double.longBitsToDouble(sharedPref.getLong("centerLng", 74));
-        double longitude = Double.longBitsToDouble(sharedPref.getLong("centerLat", 40));
+        double latitude = Double.longBitsToDouble(sharedPref.getLong(SHAREDPREFLAT, 74));
+        double longitude = Double.longBitsToDouble(sharedPref.getLong(SHAREDPREFLNG, 40));
 
         // Instantiates a new CircleOptions object and defines the center and radius
         CircleOptions circleOptions = new CircleOptions()
@@ -74,8 +75,8 @@ public class MapFragment extends Fragment {
                 circle.setCenter(latLng);
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putLong("centerLng",Double.doubleToRawLongBits(latLng.longitude));
-                editor.putLong("centerLat",Double.doubleToRawLongBits(latLng.latitude));
+                editor.putLong(SHAREDPREFLAT,Double.doubleToRawLongBits(latLng.latitude));
+                editor.putLong(SHAREDPREFLNG,Double.doubleToRawLongBits(latLng.longitude));
                 editor.apply();
             }
         });
